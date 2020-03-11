@@ -1,0 +1,10 @@
+<header>
+    <nav class="navbar bg-light">
+        <button 
+            class="btn btn-outline-primary my-2 my-sm-0 ml-auto"
+            *ngIf="showLogoutButton$ | async" 
+            (click)="logout()">
+            Logout
+        </button>
+    </nav>
+</header>

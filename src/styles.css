@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+nav {
+    min-height: 55px;
+    box-shadow: gray 0px 0px 2px;
+}
+
+main {
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+#login {
+    margin: auto;
+    max-width: 400px;
+}
+
+@media screen and (min-width: 760px) {
+    main {
+        width: 50%;
+    }
+}
