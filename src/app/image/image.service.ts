@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class ImageService {
     return new Promise((resolve, reject) => {
       this.authService.isAuthenticated().then(isAuthenticated => {
         if(isAuthenticated) {
-          this.http.get("http://localhost:3000/api/images",
+          this.http.get(environment.apiBaseUrl + "/api/images",
             {headers: {"authorization": "Bearer " + this.authService.token}}
           )
           .subscribe((devices: object[]) => {
@@ -41,7 +40,7 @@ export class ImageService {
     return new Promise((resolve, reject) => {
       this.authService.isAuthenticated().then(isAuthenticated => {
         if(isAuthenticated) {
-          this.http.get("http://localhost:3000/api/images/" + filename, {
+          this.http.get(environment.apiBaseUrl + "/api/images/" + filename, {
             headers: new HttpHeaders({
               "authorization": "Bearer " + this.authService.token,
               "content-type": "text/plain"

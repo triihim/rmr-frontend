@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
 
   isAuthenticated(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.http.get("http://localhost:3000/auth/validate", {
+      this.http.get(environment.apiBaseUrl + "/auth/validate", {
         headers: new HttpHeaders({"authorization": "Bearer " + this.token})
       }).subscribe(result => {
         resolve(result["valid"]);
@@ -34,7 +35,7 @@ export class AuthService {
 
   login(email, password): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.http.post("http://localhost:3000/auth/login", {
+      this.http.post(environment.apiBaseUrl + "/auth/login", {
         "email": email,
         "password": password
       }).subscribe(response => {
