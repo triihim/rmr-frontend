@@ -1,7 +1,9 @@
 <button class="btn btn-secondary" routerLink="/dashboard">Back to dashboard</button>
-<div class="mt-2">
-    <p><strong>Device:</strong> {{device}}</p>
-    <p><strong>Image taken:</strong> {{timestamp | date:"d.M.y h:mm a"}}</p>
+<div class="card my-2">
+    <div class="card-header">
+        <p><strong>Device:</strong> {{device}}</p>
+        <p><strong>Image taken:</strong> {{timestamp | date:"d.M.y h:mm a"}}</p>
+    </div>
+    <img src="{{imageUrl}}" class="img-fluid">
 </div>
 
-<img src="{{imageUrl}}" class="mb-5">

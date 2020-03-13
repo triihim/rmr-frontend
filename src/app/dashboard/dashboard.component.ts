@@ -1,24 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image/image.service';
 
+interface DeviceImage {
+  deviceName: string;
+  timestamp: string;
+  filename: string;
+}
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
 
-  deviceImages: Array<object> = [
-    {
-      device: "RMR0123456789",
-      timestamp: "1583945550781",
-      filename: "RMR0123456789/1583945550781.jpg"
-    },
-    {
-      device: "RMR0123456789",
-      timestamp: "1583942450781",
-      filename: "RMR0123456789/1583942450781.jpg"
-    }
-];
+  deviceImages: Array<DeviceImage> = [];
 
   constructor(private imageService: ImageService) { }
 
@@ -33,11 +28,12 @@ export class DashboardComponent implements OnInit {
           const deviceName = imgFilename.split("/")[0];
           const timestamp = imgFilename.split("/")[1].split(".")[0];
           return {
-            device: deviceName,
+            deviceName: deviceName,
             timestamp: timestamp,
             filename: imgFilename
           }
         });
+        this.deviceImages.sort((img1, img2) => +img2.timestamp - +img1.timestamp);
       })
       .catch(() => {
         console.log("Error fetching images");
